@@ -1,0 +1,30 @@
+postgres:
+  hostname: <amazon postgress hostname>
+  username: <amazon postgress username>
+  password: <amazon postgress password>
+  database: <amazon postgress database schema name>
+
+athena:
+  aws_secret:  <aws screat key>
+  aws_access_key_id: <aws access key id>
+  s3_staging_dir: '<aws s3 source path>'
+  region_name: '<aws region name/id>'
+
+
+snowflake:
+
+  account: <snowflake IP/hostname>
+  database: <snowflake dbname>
+  datawarehouse: <snowflake datawarehouse name>
+  role: <snowflake role>
+  schema: <snowflake schema name>
+  dyanmodb_table: '<dynamodb table anme>'
+  dynamodb_envname: <dynamodb evnvironment name>
+
+
+redshift:
+  hostname: <redshift IP/hostname>
+  'port': <redshift Port>
+  username: <redshift username>
+  password: <redshift password>
+  database: <redshift database schema name>

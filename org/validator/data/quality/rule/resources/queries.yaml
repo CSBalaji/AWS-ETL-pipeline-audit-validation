@@ -1,0 +1,73 @@
+rule:
+  qry:  |
+    select r.id,
+    r.statement as statement,
+    rd.id rule_datasource_id,
+    d.id as datasource_id,
+    c.type as compute_type,
+    c.name as compute_name,
+    s.type as storage_type,
+    s.storage_location  as storage_location ,
+    s.format as storage_format ,
+    s.properties as storage_properties
+    from
+    rule  r ,
+    rule_datasource rd ,
+    datasource d,
+    compute c,
+    storage s
+    where r.id =  {rule_id}
+    and r.id= rd.rule_id
+    and rd.datasource_id = d.id
+    and d.compute_id = c.id
+    and d.storage_id = s.id
+
+
+rule_group:
+  qry:  |
+    select r.id,
+    r.statement as statement,
+    rd.id rule_datasource_id,
+    d.id as datasource_id,
+    c.type as compute_type,
+    c.name as compute_name,
+    s.type as storage_type,
+    s.storage_location  as storage_location ,
+    s.format as storage_format ,
+    s.properties as storage_properties
+    from
+    rule  r ,
+    rule_datasource rd ,
+    datasource d,
+    compute c,
+    storage s
+    where r.rule_group_id =  {rule_group_id}
+    and r.id= rd.rule_id
+    and rd.datasource_id = d.id
+    and d.compute_id = c.id
+    and d.storage_id = s.id
+
+
+log:
+  qry:  |
+    INSERT INTO dataquality_dev.rule_execution_log
+    select
+           {status},
+    	   {exec_time},
+    	   {exec_date},
+    	   product,
+    	   entity,
+    	   {metrics},
+    	   {error},
+    	   {rule_id1}
+    from  rule r where  r.id = {rule_id2}
+
+rule_params:
+  qry:  |
+    select
+        id,
+        rule_id,
+        name,
+        value
+     from  rule_parameter rp where  rp.rule_id = {rule_id}
+
